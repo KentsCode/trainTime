@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Train Schedule</title>
+
+	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+<body>
+
+	<div class="jumbotron">
+	  <h1 class="display-3">Train Scheduler</h1>
+	  <p class="lead">For keeping track of your public transit schedule.</p>
+	  <hr class="my-4">
+	  </p>
+	</div>
+
+	<table class="table">
+  <thead class="thead-inverse">
+    <tr>
+      <th>Train Name</th>
+      <th>Destination</th>
+      <th>Frequency</th>
+      <th>Next Arrival</th>
+  	  <th>Minutes Away</th>
+    </tr>
+  </thead>
+  <tbody id="mainTableBody">
+    <!-- Javascript inserts firbase data into table -->
+  </tbody>
+ 
+<div class="card" style="width: 900px;">
+ <div class="card-header">
+ </div>
+	<div class="form-group row">
+	<label for="example-text-input" class="col-2 col-form-label" >Train Name</label>
+	<div class="col-10">
+	  <input class="form-control" type="text" id="train-name-input">
+	</div>
+	</div>
+	<div class="form-group row">
+	<label for="example-search-input" class="col-2 col-form-label">Destination</label>
+	<div class="col-10">
+	  <input class="form-control" type="search" id="destination-input">
+	</div>
+	</div>
+	<div class="form-group row">
+	<label for="example-email-input" class="col-2 col-form-label" >First Train Time (HH:MM - Military Time)</label>
+	<div class="col-10">
+	  <input class="form-control" type="email" id="first-train-input">
+	</div>
+	</div>
+	<div class="form-group row">
+	<label for="example-url-input" class="col-2 col-form-label" >Frequency (Minutes)</label>
+	<div class="col-10">
+
+  	<input class="form-control" type="url" id="frequency-input">
+
+  	<input type="submit" value="SUBMIT" id="submit-button">
+
+</div>
+</div>
+ </ul>
+</div>
+
+	
+	<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+	<script type="text/javascript" src="assets/js/jquery331.js"></script>
+	<script type="text/javascript" src="assets/js/moment.js"></script>
+	<script type="text/javascript" src="assets/js/javascript.js"></script>
+</body>
+</html>
