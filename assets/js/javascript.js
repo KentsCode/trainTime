@@ -38,31 +38,34 @@ $(document).ready(function() {
 
 // This adds firebase stuff automatically into the table when the page loads or somebody adds something.
   firebase.database().ref().on("child_added", function(childSnapshot) {
-  	console.log(childSnapshot);
+  	//console.log(childSnapshot);
 
   	var trainScheduleInFirebase = JSON.stringify(childSnapshot);
     var trainScheduleParse = JSON.parse(trainScheduleInFirebase);
-  	console.log(trainScheduleInFirebase);
+  	//console.log(trainScheduleInFirebase);
   	console.log(trainScheduleParse);
-    console.log(trainScheduleParse.trainNameDB);
+   // console.log(trainScheduleParse.trainNameDB);
 
-    var now = moment().format("LT");
-   /* var nowPlus = now.clone().add(trainScheduleParse.frequencyMinutesDB, "m")
-    var nextTrainDisplay = nowPlus.format("h:mm");
-    //var untilNextTrain = nowPlus.add(now, "m").format("mm");*/
-    console.log(now);
-    //console.log(nowPlus);
-    //console.log(nextTrainDisplay);
-    //console.log(untilNextTrain);
-   // var firstTrainCalc = trainScheduleParse.firstTrainTimeDB.format("h:mm")
-    //console.log(firstTrainCalc);
-  	/*var newRow = $("<tr>");
-  	var newCell = $("<td>");*/
-  	/*$("#mainTableBody").append("<tr><td>" + trainScheduleParse.trainNameDB + "</td><td>" +
-     trainScheduleParse.destinationNameDB + "</td><td>" + trainScheduleParse.frequencyMinutesDB + "</td><td>" + nextTrainDisplay + "</td>");*/
-  	//for (var i = firstTrainCalc; i >= 24; firstTrainCalc + trainScheduleParse.frequencyMinutesDB) {
+
+//Calculations
+   // var now = moment().format("LT");
+    var frequencyCalc = trainScheduleParse.frequencyMinutesDB;
+    console.log(frequencyCalc);
+    var firstTrainCalc = moment(trainScheduleParse.firstTrainTimeDB, "hh:mm");
+    console.log(firstTrainCalc);
+    timeDifference = moment().diff(moment(firstTrainCalc), "minutes");
+    console.log(timeDifference);
+    remainder = timeDifference % frequencyCalc;
+    console.log(remainder);
+    minutesLeft = frequencyCalc - remainder;
+
+    var nextTrain = moment().add(minutesLeft, "minutes");
+    var nextTrainDisplay = moment(nextTrain).format("h:mm");
+
+    //puts stuff into the table
+  	$("#mainTableBody").append("<tr><td>" + trainScheduleParse.trainNameDB + "</td><td>" + trainScheduleParse.destinationNameDB + "</td><td>" + trainScheduleParse.frequencyMinutesDB + "</td><td>" + nextTrainDisplay + "</td><td>" + minutesLeft + "</td>");
+
       
-   // }
 
   });
 }); 
